@@ -1,0 +1,28 @@
+﻿version: '2'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    command: npm start
+    image: "frontend"
+    ports:
+      - "3000:3000"
+    volumes:
+      - c:/tochka/frontend:/root/frontend
+  backend:
+    build:
+      context: ./backend
+    depends_on:
+      - db
+    image: "backend"
+    ports:
+      - "80:80"
+    volumes:
+     - c:/tochka/backend:/var/www/html
+  db:
+    environment:
+      POSTGRES_PASSWORD: "password"
+    image: postgres:9.4
+    ports:
+      - "5432:5432"
