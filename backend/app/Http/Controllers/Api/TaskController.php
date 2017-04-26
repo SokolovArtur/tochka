@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\DB;
 class TaskController extends Controller
 {
     /**
+     * Instantiate a new TaskController instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('cors');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -37,12 +45,12 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $result = DB::table('tasks')->where('id', '=', (int)$id)->get();
+        $result = DB::table('tasks')->where('id', '=', (int)$id)->first();
 
-        if ($result->isEmpty()) {
+        if ($result === null) {
             abort(404);
         }
 
-        return $result;
+        return json_encode($result);
     }
 }

@@ -1,1 +1,25 @@
-<h1>Hello, world!</h1>
+<h2>Tasks</h2>
+
+<table class="table" data-role="datatable" *ngIf="tasks">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of tasks">
+            <td>
+                {{ task.id }}
+            </td>
+            <td>
+                <a [routerLink]="['/details', task.id]">{{ task.title }}</a>
+            </td>
+            <td>
+                {{ task.date }}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
