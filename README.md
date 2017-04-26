@@ -3,9 +3,9 @@
 Либо раскомментировать `COPY . .` в соответствующих `Dockerfile`.
 * Запустить Docker Compose: `docker-compose up --build -d`
 * Войти в контейнер бекенда: `docker exec -ti tochka_backend_1 /bin/bash`
+* Запустить Composer: `php composer.phar install --prefer-dist`
 * Измененить права доступа к файлам и директориям: `chmod -R 777 bootstrap/cache storage`
-* Установить ключ приложения: `php artisan key:generate`
-* Сформируется новый файл `.env` где нужно будет прописать настройки.
+* В файле `.env` нужно прописать настройки.
 * Запустить миграцию: `php artisan migrate`
 * Сгенерировать список задач: `php artisan task:create --amount=1000`
 * Выйти из контейнера бекенда: `exit`
@@ -13,3 +13,5 @@
 
 ## REST API
 GET /api/v1/task - Возвращает список задач.
+
+GET /api/v1/task/:id - Детальная информация о задаче. id - идентификатор задачи.

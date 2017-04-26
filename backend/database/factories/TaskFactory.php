@@ -15,5 +15,8 @@ $factory->define(App\Task::class, function () {
             'Y-m-d',
             strtotime("+{$i} hours")
         ),
+        'author' => "Автор {$nextId}",
+        'status' => "Статус {$nextId}",
+        'description' => "Описание {$nextId}",
     ];
 });

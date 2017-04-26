@@ -1,4 +1,4 @@
-# vendor/
+vendor/
 composer.lock
 
 # Laravel 4 specific

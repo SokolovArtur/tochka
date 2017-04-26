@@ -19,7 +19,11 @@ class TaskController extends Controller
         // а обновляются они не чаще одного раза в час.
         $result = Cache::remember('tasks', 3600, function() {
             // Количество возвращаемых задач: 1000.
-            return DB::table('tasks')->orderBy('id', 'desc')->take(1000)->get();
+            return DB::table('tasks')
+                ->select('id', 'title', 'date')
+                ->orderBy('id', 'desc')
+                ->take(1000)
+                ->get();
         });
 
         return $result;
@@ -33,6 +37,12 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $result = DB::table('tasks')->where('id', '=', (int)$id)->get();
+
+        if ($result->isEmpty()) {
+            abort(404);
+        }
+
+        return $result;
     }
 }
