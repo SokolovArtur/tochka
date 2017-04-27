@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Task::class, function () {
     static $maxId;
-    static $i = 1; $i++;
+    static $i = 0; $i++;
 
     $nextId = ($maxId ?: $maxId = DB::table('tasks')->max('id')) + $i;
 
