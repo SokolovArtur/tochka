@@ -8,6 +8,8 @@ import { ITask, TaskService } from './../../services/task/task.service';
     templateUrl: 'home.component.html'
 })
 export class HomeComponent {
+    public filterQuery: string;
+
     public tasks: ITask[];
 
     constructor(private http: Http) {

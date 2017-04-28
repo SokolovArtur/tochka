@@ -1,25 +1,49 @@
-<h2>Tasks</h2>
+<h2>Задачи</h2>
 
-<table class="table" data-role="datatable" *ngIf="tasks">
+<form #f="ngForm">
+    <div class="form-group">
+        <input type="text" name="filterQuery" class="form-control" placeholder="Поиск" [(ngModel)]="filterQuery" />
+    </div>
+</form>
+
+<table class="table" #mf="mfDataTable" [mfData]="tasks | dataFilter : filterQuery" [mfRowsOnPage]="10">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Date</th>
+            <th>
+                <mfDefaultSorter by="id">Номер задачи</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="title">Заголовок</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="date">Дата выполнения</mfDefaultSorter>
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let task of tasks">
+        <tr *ngFor="let task of mf.data">
             <td>
                 {{ task.id }}
             </td>
             <td>
-                <a [routerLink]="['/details', task.id]">{{ task.title }}</a>
+                {{ task.title }}
             </td>
             <td>
                 {{ task.date }}
             </td>
+            <td>
+                <a [routerLink]="['/details', task.id]">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </a>
+            </td>
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" align="center">
+                <mfBootstrapPaginator></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
 </table>
-
