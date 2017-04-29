@@ -1,27 +1,32 @@
-<h2>Details</h2>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close"><span (click)="dialog.close()">&times;</span></button>
+        <h4 class="modal-title">
+            Информация о задаче
+            <span *ngIf="task">№{{ task.id }}</span>
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="row" *ngIf="task">
+            <dl class="horizontal">
+                <dt>Заголовок</dt>
+                <dd>{{ task.title }}</dd>
 
-<div class="row" *ngIf="task">
-    <dl class="horizontal">
-        <dt>Id</dt>
-        <dd>{{ task.id }}</dd>
+                <dt>Дата выполнения</dt>
+                <dd>{{ task.date }}</dd>
 
-        <dt>Title</dt>
-        <dd>{{ task.title }}</dd>
+                <dt>Автор</dt>
+                <dd>{{ task.author }}</dd>
 
-        <dt>Date</dt>
-        <dd>{{ task.date }}</dd>
+                <dt>Статус</dt>
+                <dd>{{ task.status }}</dd>
 
-        <dt>Author</dt>
-        <dd>{{ task.author }}</dd>
-
-        <dt>Status</dt>
-        <dd>{{ task.status }}</dd>
-
-        <dt>Description</dt>
-        <dd>{{ task.description }}</dd>
-    </dl>
-</div>
-
-<div>
-    <a [routerLink]="['/']">Back to List</a>
+                <dt>Описание</dt>
+                <dd>{{ task.description }}</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="dialog.close()">Закрыть</button>
+    </div>
 </div>

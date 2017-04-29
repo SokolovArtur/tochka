@@ -1,29 +1,34 @@
 import { Component } from '@angular/core';
+import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { ModalComponent, DialogRef } from 'angular2-modal';
 import { Http } from '@angular/http';
-import { ActivatedRoute } from '@angular/router';
 import { ITask, TaskService } from './../../services/task/task.service';
+
+export class DetailsComponentContext extends BSModalContext {
+    public id: number;
+}
 
 @Component({
     moduleId: module.id,
     selector: 'details-component',
     templateUrl: 'details.component.html'
 })
-export class DetailsComponent {
+export class DetailsComponent implements ModalComponent<DetailsComponentContext> {
+    public context: DetailsComponentContext;
+
     public task: ITask;
 
-    constructor(private http: Http, private route: ActivatedRoute) {
-        var taskService: TaskService = new TaskService(http);
+    constructor(public dialog: DialogRef<DetailsComponentContext>, private http: Http) {
+        this.context = dialog.context;
 
-        taskService.details(this.getId()).subscribe(data => {
-            this.task = data;
-        });
+        this.serverRequest();
     }
 
-    public getId(): number {
-        var id: number;
-        this.route.params.subscribe(params => {
-            id = +params['id']; // (+) converts string 'id' to a number
+    // TODO Кэширование запросов
+    private serverRequest() {
+        var taskService: TaskService = new TaskService(this.http);
+        taskService.details(this.context.id).subscribe(data => {
+            this.task = data;
         });
-        return id;
     }
 }

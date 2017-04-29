@@ -18,3 +18,5 @@ GET /api/v1/task/:id - Детальная информация о задаче. 
 
 ## Frontend
 Фронтенд доступен по адресу localhost:3000
+
+Не забудьте указать адрес сервера в файле `frontend/app/services/task/task.service.ts`.

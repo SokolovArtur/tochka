@@ -33,7 +33,7 @@
                 {{ task.date }}
             </td>
             <td>
-                <a [routerLink]="['/details', task.id]">
+                <a (click)="openTask(task.id)">
                     <span class="glyphicon glyphicon-eye-open"></span>
                 </a>
             </td>

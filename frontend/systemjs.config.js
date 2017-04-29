@@ -10,7 +10,12 @@
             '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
             '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
+            '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
             'angular2-datatable': 'npm:angular2-datatable',
+            'angular2-modal': 'npm:angular2-modal',
+            'angular2-modal/plugins/bootstrap': 'npm:angular2-modal/bundles/angular2-modal.bootstrap.umd.js',
+            'angular2-modal/plugins/js-native': 'npm:angular2-modal/bundles/angular2-modal.js-native.umd.js',
+            'angular2-modal/plugins/vex': 'npm:angular2-modal/bundles/angular2-modal.vex.umd.js',
             'lodash': 'npm:lodash/lodash.js',
             'rxjs': 'npm:rxjs'
         },
@@ -22,6 +27,10 @@
             'angular2-datatable': {
                 main: 'index.js',
                 defaultExtension: 'js'
+            },
+            'angular2-modal': {
+                defaultExtension: 'js',
+                main: 'bundles/angular2-modal.umd.js'
             },
             rxjs: {
                 defaultExtension: 'js'
